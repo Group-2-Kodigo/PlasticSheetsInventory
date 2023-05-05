@@ -15,8 +15,9 @@ public class SizesServiceImpl implements SizesService {
     private SizesRepository sizesRepository;
 
     @Override
-    public Sizes saveSizes(Sizes sizes){
-        return sizesRepository.save(sizes);
+    public String saveSizes(Sizes sizes){
+        sizesRepository.save(sizes);
+        return "New sizes has added";
     }
 
     @Override
