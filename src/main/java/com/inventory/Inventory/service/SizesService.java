@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SizesService {
 
-    Sizes saveSizes(Sizes sizes);
+    String saveSizes(Sizes sizes);
 
     public List<Sizes> getAllSizes();
 
