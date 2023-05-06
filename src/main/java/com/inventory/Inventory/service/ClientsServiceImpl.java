@@ -20,6 +20,12 @@ public class ClientsServiceImpl implements ClientsService {
 
     @Override
     public String saveClients(Clients clients) {
+        if (!EmailValidator.isValidEmail(clients.getEmail())){
+            throw new InvalidEmailException(clients.getEmail());
+        }
+        if (!PhoneNumberValidator.isValidPhoneNumber(clients.getPhoneNumber())){
+            throw new InvalidPhoneNumberException(clients.getPhoneNumber());
+        }
         clientsRepository.save(clients);
         return "New Client has added";
     }
