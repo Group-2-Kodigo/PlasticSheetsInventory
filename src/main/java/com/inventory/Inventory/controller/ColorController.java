@@ -3,6 +3,7 @@ package com.inventory.Inventory.controller;
 import com.inventory.Inventory.exception.ColorNotFoundException;
 import com.inventory.Inventory.model.Colors;
 import com.inventory.Inventory.repository.ColorRepository;
+import com.inventory.Inventory.service.ColorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,39 +13,29 @@ import java.util.List;
 @RequestMapping("/colors")
 @CrossOrigin
 public class ColorController {
-@Autowired
-    private ColorRepository colorRepository;
+    @Autowired
+    private ColorsService colorsService;
     @PostMapping("/add")
     public String add (@RequestBody Colors colors){
-        colorRepository.save(colors);
-        return "new Color added";
+        return colorsService.saveColors(colors);
     }
-    @GetMapping("/color")
-    List<Colors> getAllColors(){
-        return colorRepository.findAll();
-    }
-
-    @GetMapping("/color/{id}")
-    Colors getColorById(@PathVariable int id_color) {
-        return colorRepository.findById(id_color)
-                .orElseThrow(()->new ColorNotFoundException(id_color));
+    @GetMapping("/getAll")
+    public List<Colors> getAllColors(){
+        return colorsService.getAllCollors();
     }
 
-    @PutMapping("/color/{id}")
-    Colors updateColor(@RequestBody Colors newColors, @PathVariable Integer id_color){
-        return colorRepository.findById(id_color)
-                .map(colors -> {
-                    colors.setColor(newColors.getColor());
-                    return colorRepository.save(colors);
-                }).orElseThrow(()->new ColorNotFoundException(id_color));
+    @GetMapping("/getColorByID/{id_color}")
+    public Colors getColorById(@PathVariable int id_color) {
+        return colorsService.getColorsById(id_color);
     }
 
-    @DeleteMapping("/color/{id}")
-    String deleteColor (@PathVariable Integer id_color){
-        if (!colorRepository.existsById(id_color)){
-            throw new ColorNotFoundException(id_color);
-        }
-        colorRepository.deleteById(id_color);
-        return "Color con id "+id_color+ " ha sido eliminado correctamente.";
+    @PutMapping("/updateColor/{id_color}")
+    public Colors updateColor(@RequestBody Colors newColors, @PathVariable Integer id_color){
+        return colorsService.updateColors(newColors, id_color);
+    }
+
+    @DeleteMapping("/deleteColor/{id_color}")
+    public String deleteColor (@PathVariable Integer id_color){
+        return colorsService.deleteColors(id_color);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ColorsService {
 
-    Colors saveColors(Colors colors);
+    String saveColors(Colors colors);
 
     public List<Colors> getAllCollors();
 

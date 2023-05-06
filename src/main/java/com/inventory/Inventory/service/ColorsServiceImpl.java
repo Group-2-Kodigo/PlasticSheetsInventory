@@ -13,8 +13,9 @@ public class ColorsServiceImpl implements ColorsService{
     @Autowired
     private ColorRepository colorRepository;
     @Override
-    public Colors saveColors(Colors colors) {
-        return colorRepository.save(colors);
+    public String saveColors(Colors colors) {
+        colorRepository.save(colors);
+        return "new Color added";
     }
 
     @Override
@@ -24,17 +25,23 @@ public class ColorsServiceImpl implements ColorsService{
 
     @Override
     public Colors getColorsById(Integer id_color) {
-        return null;
-    }
-
-    @Override
-    public Colors updateColors(Colors newColor, Integer id_color) {
-
         return colorRepository.findById(id_color).orElseThrow(()-> new ColorNotFoundException(id_color));
     }
 
     @Override
+    public Colors updateColors(Colors newColor, Integer id_color) {
+        return colorRepository.findById(id_color).map(colors -> {
+            colors.setColor(newColor.getColor());
+            return colorRepository.save(colors);
+        }).orElseThrow(()->new ColorNotFoundException(id_color));
+    }
+
+    @Override
     public String deleteColors(Integer id_color) {
-        return null;
+        if (!colorRepository.existsById(id_color)){
+            throw new ColorNotFoundException(id_color);
+        }
+        colorRepository.deleteById(id_color);
+        return "Size with id " + id_color + " has been deleted success";
     }
 }

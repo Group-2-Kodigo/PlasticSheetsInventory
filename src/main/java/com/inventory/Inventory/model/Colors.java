@@ -7,24 +7,9 @@ import lombok.Data;
 
 public class Colors {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_color")
     private int id_color;
     private String color;
 
-    public int getId_color() {
-        return id_color;
-    }
-
-    public void setId_color(int id_color) {
-        this.id_color = id_color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }

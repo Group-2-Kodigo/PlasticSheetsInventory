@@ -17,7 +17,7 @@ public class ColorNotFoundAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> exceptionHandler(ColorNotFoundException exception){
         Map<String, String> errorMap=new HashMap<>();
-                errorMap.put("", exception.getMessage());
+                errorMap.put("Error message", exception.getMessage());
         return errorMap;
     }
 }
