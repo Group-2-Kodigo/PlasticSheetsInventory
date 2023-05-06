@@ -22,13 +22,13 @@ public class ColorController {
         return colorRepository.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/color/{id}")
     Colors getColorById(@PathVariable Long id) {
         return colorRepository.findById(id)
                 .orElseThrow(()->new ColorNotFoundException(id));
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/color/{id}")
     Colors updateColor(@RequestBody Colors newColors, @PathVariable Long id){
         return colorRepository.findById(id)
                 .map(colors -> {
@@ -37,12 +37,12 @@ public class ColorController {
                 }).orElseThrow(()->new ColorNotFoundException(id));
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/color/{id}")
     String deleteColor (@PathVariable Long id){
         if (!colorRepository.existsById(id)){
             throw new ColorNotFoundException(id);
         }
         colorRepository.deleteById(id);
-        return "Colors con id "+id+ " ha sido eliminado correctamente.";
+        return "Color con id "+id+ " ha sido eliminado correctamente.";
     }
 }
