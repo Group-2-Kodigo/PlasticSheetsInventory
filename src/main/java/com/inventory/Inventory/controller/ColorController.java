@@ -1,7 +1,7 @@
 package com.inventory.Inventory.controller;
 
 import com.inventory.Inventory.exception.ColorNotFoundException;
-import com.inventory.Inventory.model.Color;
+import com.inventory.Inventory.model.Colors;
 import com.inventory.Inventory.repository.ColorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,27 +13,27 @@ public class ColorController {
 @Autowired
     private ColorRepository colorRepository;
     @PostMapping("/color")
-    Color newColor(@RequestBody Color newColor){
-        return colorRepository.save(newColor);
+    Colors newColor(@RequestBody Colors newColors){
+        return colorRepository.save(newColors);
     }
 
     @GetMapping("/color")
-    List<Color> getAllColors(){
+    List<Colors> getAllColors(){
         return colorRepository.findAll();
     }
 
     @GetMapping("/user/{id}")
-    Color getColorById(@PathVariable Long id) {
+    Colors getColorById(@PathVariable Long id) {
         return colorRepository.findById(id)
                 .orElseThrow(()->new ColorNotFoundException(id));
     }
 
     @PutMapping("/user/{id}")
-    Color updateColor(@RequestBody Color newColor, @PathVariable Long id){
+    Colors updateColor(@RequestBody Colors newColors, @PathVariable Long id){
         return colorRepository.findById(id)
-                .map(color -> {
-                    color.setColor(newColor.getColor());
-                    return colorRepository.save(color);
+                .map(colors -> {
+                    colors.setColor(newColors.getColor());
+                    return colorRepository.save(colors);
                 }).orElseThrow(()->new ColorNotFoundException(id));
     }
 
@@ -43,6 +43,6 @@ public class ColorController {
             throw new ColorNotFoundException(id);
         }
         colorRepository.deleteById(id);
-        return "Color con id "+id+ " ha sido eliminado correctamente.";
+        return "Colors con id "+id+ " ha sido eliminado correctamente.";
     }
 }

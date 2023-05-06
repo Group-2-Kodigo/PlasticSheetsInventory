@@ -1,13 +1,14 @@
 package com.inventory.Inventory.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@Entity
-public class Color {
+@Entity @Data
+
+public class Colors {
     @Id
     @GeneratedValue
+    @Column(name = "id_color")
     private Long id_color;
     private String color;
 
