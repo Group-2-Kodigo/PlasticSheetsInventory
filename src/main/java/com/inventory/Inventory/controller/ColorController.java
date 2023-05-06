@@ -9,40 +9,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/colors")
+@CrossOrigin
 public class ColorController {
 @Autowired
     private ColorRepository colorRepository;
-    @PostMapping("/color")
-    Colors newColor(@RequestBody Colors newColors){
-        return colorRepository.save(newColors);
+    @PostMapping("/add")
+    public String add (@RequestBody Colors colors){
+        colorRepository.save(colors);
+        return "new Color added";
     }
-
     @GetMapping("/color")
     List<Colors> getAllColors(){
         return colorRepository.findAll();
     }
 
     @GetMapping("/color/{id}")
-    Colors getColorById(@PathVariable Long id) {
-        return colorRepository.findById(id)
-                .orElseThrow(()->new ColorNotFoundException(id));
+    Colors getColorById(@PathVariable int id_color) {
+        return colorRepository.findById(id_color)
+                .orElseThrow(()->new ColorNotFoundException(id_color));
     }
 
     @PutMapping("/color/{id}")
-    Colors updateColor(@RequestBody Colors newColors, @PathVariable Long id){
-        return colorRepository.findById(id)
+    Colors updateColor(@RequestBody Colors newColors, @PathVariable Integer id_color){
+        return colorRepository.findById(id_color)
                 .map(colors -> {
                     colors.setColor(newColors.getColor());
                     return colorRepository.save(colors);
-                }).orElseThrow(()->new ColorNotFoundException(id));
+                }).orElseThrow(()->new ColorNotFoundException(id_color));
     }
 
     @DeleteMapping("/color/{id}")
-    String deleteColor (@PathVariable Long id){
-        if (!colorRepository.existsById(id)){
-            throw new ColorNotFoundException(id);
+    String deleteColor (@PathVariable Integer id_color){
+        if (!colorRepository.existsById(id_color)){
+            throw new ColorNotFoundException(id_color);
         }
-        colorRepository.deleteById(id);
-        return "Color con id "+id+ " ha sido eliminado correctamente.";
+        colorRepository.deleteById(id_color);
+        return "Color con id "+id_color+ " ha sido eliminado correctamente.";
     }
 }

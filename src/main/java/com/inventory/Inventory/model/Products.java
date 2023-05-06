@@ -33,4 +33,7 @@ public class Products {
     @ManyToOne
     @JoinColumn(name = "id_material")
     private Material material;
+    @ManyToOne
+    @JoinColumn(name = "id_supplier")
+    private Suppliers suppliers;
 }

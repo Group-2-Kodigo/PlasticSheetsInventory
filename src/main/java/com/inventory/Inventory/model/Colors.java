@@ -9,14 +9,14 @@ public class Colors {
     @Id
     @GeneratedValue
     @Column(name = "id_color")
-    private Long id_color;
+    private int id_color;
     private String color;
 
-    public Long getId_color() {
+    public int getId_color() {
         return id_color;
     }
 
-    public void setId_color(Long id_color) {
+    public void setId_color(int id_color) {
         this.id_color = id_color;
     }
 
