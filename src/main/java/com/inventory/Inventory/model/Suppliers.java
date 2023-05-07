@@ -1,15 +1,12 @@
 package com.inventory.Inventory.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity @Data
 public class Suppliers {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.AUTO)
 @Column(name= "id_supplier")
 private Long id;
 private String supplier;

@@ -10,7 +10,7 @@ import lombok.*;
 public class Material {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_material")
     private int id_material;
     @Column(name = "material")
