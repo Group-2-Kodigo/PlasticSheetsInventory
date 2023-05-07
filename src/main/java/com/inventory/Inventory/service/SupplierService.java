@@ -3,7 +3,7 @@ import com.inventory.Inventory.model.Suppliers;
 import java.util.List;
 
 public interface SupplierService {
-    Suppliers saveSupplier(Suppliers suppliers);
+    String saveSupplier(Suppliers suppliers);
 
     public List<Suppliers> getAllSuppliers();
 
