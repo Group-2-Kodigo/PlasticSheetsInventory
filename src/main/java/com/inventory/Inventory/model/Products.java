@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
-@Entity @Data @Getter @Setter @NoArgsConstructor
+@Entity @Data
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

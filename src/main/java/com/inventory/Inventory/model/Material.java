@@ -5,7 +5,7 @@ import lombok.*;
 
 @Entity
 @Data
-@Getter @Setter @NoArgsConstructor @ToString
+
 
 public class Material {
 

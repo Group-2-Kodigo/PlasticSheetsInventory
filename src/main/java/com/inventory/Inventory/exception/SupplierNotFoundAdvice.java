@@ -17,7 +17,7 @@ public class SupplierNotFoundAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> exceptionHandler(SupplierNotFoundException exception){
         Map<String, String> errorMap=new HashMap<>();
-        errorMap.put("", exception.getMessage());
+        errorMap.put("Error Message", exception.getMessage());
         return errorMap;
     }
 }

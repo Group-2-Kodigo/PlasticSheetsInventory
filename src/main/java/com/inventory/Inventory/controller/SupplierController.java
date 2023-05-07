@@ -1,54 +1,43 @@
 package com.inventory.Inventory.controller;
-
-import com.inventory.Inventory.exception.SupplierNotFoundException;
 import com.inventory.Inventory.model.Suppliers;
-import com.inventory.Inventory.repository.SupplierRepository;
+import com.inventory.Inventory.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/Suppliers")
+@CrossOrigin
 public class SupplierController {
 
     @Autowired
-    private SupplierRepository supplierRepository;
-    @PostMapping("/supplier")
-    Suppliers newSupplier(@RequestBody Suppliers newSuppliers){
-        return supplierRepository.save(newSuppliers);}
+    private SupplierService supplierService;
 
-    @GetMapping("/supplier")
-    List<Suppliers> getAllSuppliers(){
-        return supplierRepository.findAll();
+    @PostMapping("/add")
+    public String newSupplier(@RequestBody Suppliers newSuppliers){
+        supplierService.saveSupplier(newSuppliers);
+        return "New Supplier Added";
     }
 
-    @GetMapping("/supplier/{id}")
-    Suppliers getSupplierById(@PathVariable Long id) {
-        return supplierRepository.findById(id)
-                .orElseThrow(()->new SupplierNotFoundException(id));
+    @GetMapping("/getallsupplier")
+    public List<Suppliers> getAllSuppliers(){
+        return supplierService.getAllSuppliers();
     }
 
-    @PutMapping("/supplier/{id}")
-    Suppliers updateSupplier(@RequestBody Suppliers newSuppliers, @PathVariable Long id){
-        return supplierRepository.findById(id)
-                .map(suppliers -> {
-                    suppliers.setSupplier(newSuppliers.getSupplier());
-                    suppliers.setSupplierAdress(newSuppliers.getSupplierAdress());
-                    suppliers.setAgent(newSuppliers.getAgent());
-                    suppliers.setEmail(newSuppliers.getEmail());
-                    suppliers.setNIT(newSuppliers.getNIT());
-                    suppliers.setPhoneNumber(newSuppliers.getPhoneNumber());
-                    return supplierRepository.save(suppliers);
-                }).orElseThrow(()->new SupplierNotFoundException(id));
+    @GetMapping("/getsupplierbyid/{id_supplier}")
+    public Suppliers getSupplierById(@PathVariable Long id_supplier) {
+        return supplierService.getSupplierById(id_supplier);
     }
 
-    @DeleteMapping("/supplier/{id}")
-    String deleteSupplier (@PathVariable Long id){
-        if (!supplierRepository.existsById(id)){
-            throw new SupplierNotFoundException(id);
-        }
-        supplierRepository.deleteById(id);
-        return "Supplier con id "+id+ " ha sido eliminado correctamente.";
+    @PutMapping("/updateSupplier/{id_supplier}")
+    public Suppliers updateSupplier(@RequestBody Suppliers newSupplier, @PathVariable Long id_supplier){
+        return supplierService.updateSupplier(newSupplier, id_supplier);
+    }
+
+    @DeleteMapping("/deletesupplier/{id_supplier}")
+    public String deleteSupplier (@PathVariable Long id_supplier){
+        return supplierService.deleteSupplier(id_supplier);
     }
 
 }
