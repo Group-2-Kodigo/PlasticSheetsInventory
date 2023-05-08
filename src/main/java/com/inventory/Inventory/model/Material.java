@@ -5,8 +5,6 @@ import lombok.*;
 
 @Entity
 @Data
-
-
 public class Material {
 
     @Id

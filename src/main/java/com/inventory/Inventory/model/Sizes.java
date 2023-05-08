@@ -6,7 +6,7 @@ import lombok.Data;
 @Entity @Data
 public class Sizes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_size")
     private int id_size;
     private String size;

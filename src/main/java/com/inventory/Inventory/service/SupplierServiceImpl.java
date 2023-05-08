@@ -50,7 +50,7 @@ public class SupplierServiceImpl implements SupplierService{
             suppliers.setEmail(newSupplier.getEmail());
             suppliers.setPhoneNumber(newSupplier.getPhoneNumber());
             suppliers.setAgent(newSupplier.getAgent());
-            suppliers.setSupplierAdress(newSupplier.getSupplierAdress());
+            suppliers.setSupplierAddress(newSupplier.getSupplierAddress());
             suppliers.setNIT(newSupplier.getNIT());
             return supplierRepository.save(suppliers);
         }).orElseThrow(() -> new SupplierNotFoundException(id_supplier));
