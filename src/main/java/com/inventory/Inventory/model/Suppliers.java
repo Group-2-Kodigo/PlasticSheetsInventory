@@ -12,7 +12,8 @@ private Long id;
 private String supplier;
 private  String NIT;
 private String email;
-private String phoneNumber;
+
+@Column(name = "phone_number") private String phoneNumber;
 private String agent;
-private String supplierAdress;
+@Column(name = "supplier_adress")private String supplierAdress;
 }

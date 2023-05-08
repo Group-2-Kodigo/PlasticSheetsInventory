@@ -12,15 +12,15 @@ public class Products {
 
     private String product;
 
-    @Column(name = "unitPrice")
+    @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
     private String thickness;
 
-    @Column(name = "sellingPrice")
+    @Column(name = "selling_price")
     private BigDecimal sellingPrice;
 
-    private int Stock;
+    private int stock;
 
     @ManyToOne
     @JoinColumn(name = "id_color")
