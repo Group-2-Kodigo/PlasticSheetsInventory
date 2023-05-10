@@ -1,5 +1,6 @@
 package com.inventory.Inventory.model;
 
+import com.inventory.Inventory.service.StatusService;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,4 +14,7 @@ public class Clients {
     @Column(name = "phone_Number") private String phoneNumber;
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private StatusU statusU;
 }

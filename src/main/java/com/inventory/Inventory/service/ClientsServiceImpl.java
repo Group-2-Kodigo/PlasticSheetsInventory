@@ -5,9 +5,11 @@ import com.inventory.Inventory.exception.ClientNotFoundException;
 import com.inventory.Inventory.exception.InvalidEmailException;
 import com.inventory.Inventory.exception.InvalidPhoneNumberException;
 import com.inventory.Inventory.model.Clients;
+import com.inventory.Inventory.model.StatusU;
 import com.inventory.Inventory.repository.ClientsRepository;
 import com.inventory.Inventory.validators.EmailValidator;
 import com.inventory.Inventory.validators.PhoneNumberValidator;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,7 @@ public class ClientsServiceImpl implements ClientsService {
             clients.setClientName(newClient.getClientName());
             clients.setPhoneNumber(newClient.getPhoneNumber());
             clients.setEmail(newClient.getEmail());
+            clients.setStatusU(newClient.getStatusU());
             return clientsRepository.save(clients);
         }).orElseThrow(()-> new ClientNotFoundException(id_client));
     }

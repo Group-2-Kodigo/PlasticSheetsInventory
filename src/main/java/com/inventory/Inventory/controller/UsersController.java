@@ -1,6 +1,5 @@
 package com.inventory.Inventory.controller;
 
-import com.inventory.Inventory.model.Roles;
 import com.inventory.Inventory.model.Users;
 import com.inventory.Inventory.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.List;
 public class UsersController {
     @Autowired
     private UsersService usersService;
-
     @PostMapping("/add")
     public String add(@RequestBody Users users){
         return usersService.saveUser(users);

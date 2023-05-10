@@ -20,4 +20,9 @@ public class Users {
     @JoinColumn(name = "id_rol")
     private Roles roles;
 
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private StatusU statusU;
 }
+
+

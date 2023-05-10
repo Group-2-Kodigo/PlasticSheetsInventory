@@ -44,6 +44,7 @@ public class UsersServiceImpl implements UsersService {
             users.setUserName(newUser.getUserName());
             users.setUserPassword(newUser.getUserPassword());
             users.setRoles(newUser.getRoles());
+            users.setStatusU(newUser.getStatusU());
             return usersRepository.save(users);
         }).orElseThrow(()->new UsersNotFoundException(id_user));
     }
