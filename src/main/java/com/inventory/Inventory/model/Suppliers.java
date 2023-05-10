@@ -5,15 +5,21 @@ import lombok.Data;
 
 @Entity @Data
 public class Suppliers {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name= "id_supplier")
-private Long id;
-private String supplier;
-private  String NIT;
-private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_supplier")
+    private Long id_supplier;
+    private String supplier;
+    @Column(name = "NIT")
+    private String nit;
+    private String email;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    private String agent;
+    @Column(name = "supplier_address")
+    private String supplierAddress;
 
-@Column(name = "phone_number") private String phoneNumber;
-private String agent;
-@Column(name = "supplier_adress")private String supplierAdress;
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private StatusU statusU;
 }

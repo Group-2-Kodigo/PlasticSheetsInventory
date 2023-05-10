@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @Entity @Data
 public class Products {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_product")
     private int id_product;
 
@@ -21,19 +21,19 @@ public class Products {
     private BigDecimal sellingPrice;
 
     private int stock;
-
     @ManyToOne
     @JoinColumn(name = "id_color")
-    private Colors colors;
-
-    @ManyToOne
-    @JoinColumn(name = "id_size")
-    private Sizes sizes;
+    Colors color;
 
     @ManyToOne
     @JoinColumn(name = "id_material")
-    private Material material;
+    Material material;
+
+    @ManyToOne
+    @JoinColumn(name = "id_size")
+    Sizes size;
+
     @ManyToOne
     @JoinColumn(name = "id_supplier")
-    private Suppliers suppliers;
+    Suppliers supplier;
 }
