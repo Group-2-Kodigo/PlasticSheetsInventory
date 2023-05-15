@@ -17,4 +17,7 @@ public interface UsersService {
 
     String deleteUser(Integer id_user);
 
+    Users usersByCredential(Users users);
+
+
 }
