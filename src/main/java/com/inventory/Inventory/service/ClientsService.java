@@ -20,5 +20,4 @@ public interface ClientsService {
     String deleteClient(Integer id_client);
 
     Clients findByEmail(String email);
-
 }

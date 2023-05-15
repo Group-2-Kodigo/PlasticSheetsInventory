@@ -62,7 +62,7 @@ public class UsersServiceImpl implements UsersService {
             throw new UsersNotFoundException(id_user);
         }
         usersRepository.deleteById(id_user);
-        return "Client with id " + id_user + " has been deleted success";
+        return "User with id " + id_user + " has been deleted success";
     }
 
     @Override

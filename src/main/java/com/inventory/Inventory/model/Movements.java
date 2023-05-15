@@ -3,7 +3,7 @@ package com.inventory.Inventory.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity @Data
+@Entity @Data @Table(name = "movements")
 public class Movements {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -16,6 +16,9 @@ public class InvoiceHeader {
     @Column(name = "invoice_number")
     private String invoiceNumber;
 
+    @Column(name = "date_invoice")
+    private Date dateInvoice;
+
     @ManyToOne
     @JoinColumn(name = "id_movement")
     private Movements movements;
@@ -32,7 +35,6 @@ public class InvoiceHeader {
     @JoinColumn(name = "id_user")
     private Users users;
 
-    @Column(name = "date_invoice")
-    private Date dateInvoice;
+
 
 }
