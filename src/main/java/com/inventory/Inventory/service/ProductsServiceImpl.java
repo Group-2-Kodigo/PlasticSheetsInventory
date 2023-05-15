@@ -31,6 +31,14 @@ public class ProductsServiceImpl implements ProductsService{
     public Products updateProducts(Products newProducts, Integer id_product) {
         return productsRepository.findById(id_product).map(products -> {
             products.setProduct(newProducts.getProduct());
+            products.setSize(newProducts.getSize());
+            products.setStock(newProducts.getStock());
+            products.setUnitPrice(newProducts.getUnitPrice());
+            products.setSellingPrice(newProducts.getSellingPrice());
+            products.setColor(newProducts.getColor());
+            products.setMaterial(newProducts.getMaterial());
+            products.setSupplier(newProducts.getSupplier());
+            products.setThickness(newProducts.getThickness());
             return productsRepository.save(products);
         }).orElseThrow(()->new ProductsNotFoundException(id_product));
     }

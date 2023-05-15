@@ -3,24 +3,24 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
-@Entity @Data
+@Entity @Data @Table(name = "products")
 public class Products {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
     private int id_product;
-
+    @Column(name = "product")
     private String product;
 
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
-
+    @Column(name = "thickness")
     private String thickness;
 
     @Column(name = "selling_price")
     private BigDecimal sellingPrice;
 
-    private int stock;
+    @Column(name = "stock") private int stock;
     @ManyToOne
     @JoinColumn(name = "id_color")
     Colors color;

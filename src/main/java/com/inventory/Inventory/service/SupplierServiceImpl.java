@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SupplierServiceImpl implements SupplierService{
+public class SupplierServiceImpl implements SupplierService {
+
     @Autowired
     private SupplierRepository supplierRepository;
+
     @Override
     public String saveSupplier(Suppliers suppliers) {
         if (!EmailValidator.isValidEmail(suppliers.getEmail())){
@@ -24,7 +26,7 @@ public class SupplierServiceImpl implements SupplierService{
             throw new InvalidPhoneNumberException(suppliers.getPhoneNumber());
         }
         supplierRepository.save(suppliers);
-        return "New supplier Added";
+        return "New supplier has added";
     }
 
     @Override
@@ -33,27 +35,28 @@ public class SupplierServiceImpl implements SupplierService{
     }
 
     @Override
-    public Suppliers getSupplierById(Long id_supplier) {
-        return supplierRepository.findById(id_supplier).orElseThrow(()->new SupplierNotFoundException(id_supplier));
+    public Suppliers getSupplierByID(Long id_supplier) {
+        return supplierRepository.findById(id_supplier).orElseThrow(()-> new SupplierNotFoundException(id_supplier));
     }
 
     @Override
     public Suppliers updateSupplier(Suppliers newSupplier, Long id_supplier) {
-        if (!EmailValidator.isValidEmail(newSupplier.getEmail())){
-            throw new InvalidEmailException(newSupplier.getEmail());
-        }
         if (!PhoneNumberValidator.isValidPhoneNumber(newSupplier.getPhoneNumber())){
             throw new InvalidPhoneNumberException(newSupplier.getPhoneNumber());
         }
+        if (!EmailValidator.isValidEmail(newSupplier.getEmail())){
+            throw new InvalidEmailException(newSupplier.getEmail());
+        }
         return supplierRepository.findById(id_supplier).map(suppliers -> {
             suppliers.setSupplier(newSupplier.getSupplier());
+            suppliers.setNit(newSupplier.getNit());
             suppliers.setEmail(newSupplier.getEmail());
             suppliers.setPhoneNumber(newSupplier.getPhoneNumber());
             suppliers.setAgent(newSupplier.getAgent());
-            suppliers.setSupplierAdress(newSupplier.getSupplierAdress());
-            suppliers.setNIT(newSupplier.getNIT());
+            suppliers.setSupplierAddress(newSupplier.getSupplierAddress());
+            suppliers.setStatusU(newSupplier.getStatusU());
             return supplierRepository.save(suppliers);
-        }).orElseThrow(() -> new SupplierNotFoundException(id_supplier));
+        }).orElseThrow(()-> new SupplierNotFoundException(id_supplier));
     }
 
     @Override
@@ -62,6 +65,6 @@ public class SupplierServiceImpl implements SupplierService{
             throw new SupplierNotFoundException(id_supplier);
         }
         supplierRepository.deleteById(id_supplier);
-        return "Supplier with id " + id_supplier + " has been deleted success";
+        return "Client with id " + id_supplier + " has been deleted success";
     }
 }

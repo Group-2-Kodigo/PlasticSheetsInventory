@@ -1,6 +1,7 @@
 package com.inventory.Inventory.controller;
 
 import com.inventory.Inventory.model.Clients;
+import com.inventory.Inventory.model.StatusU;
 import com.inventory.Inventory.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

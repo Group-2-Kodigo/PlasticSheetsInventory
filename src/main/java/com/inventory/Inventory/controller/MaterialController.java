@@ -2,7 +2,9 @@ package com.inventory.Inventory.controller;
 
 import com.inventory.Inventory.model.Material;
 import com.inventory.Inventory.service.MaterialService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/materials")
 @CrossOrigin
+@OpenAPIDefinition
+@Configuration
 public class MaterialController {
     @Autowired
     private MaterialService materialService;

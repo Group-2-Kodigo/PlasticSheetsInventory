@@ -2,6 +2,8 @@ package com.inventory.Inventory.service;
 
 import ch.qos.logback.core.net.server.Client;
 import com.inventory.Inventory.model.Clients;
+import com.inventory.Inventory.model.StatusU;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 

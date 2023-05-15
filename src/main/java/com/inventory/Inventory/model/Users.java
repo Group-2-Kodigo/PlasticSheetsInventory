@@ -4,20 +4,26 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity @Data
+@Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private int id_user;
 
-    @Column(name = "userName")
+    @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "userPassword")
+    @Column(name = "user_password")
     private String userPassword;
 
     @ManyToOne
     @JoinColumn(name = "id_rol")
     private Roles roles;
 
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private StatusU statusU;
 }
+
+
