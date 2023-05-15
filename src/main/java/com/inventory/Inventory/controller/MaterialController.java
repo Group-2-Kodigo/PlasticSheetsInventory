@@ -1,6 +1,6 @@
 package com.inventory.Inventory.controller;
 
-import com.inventory.Inventory.model.Material;
+import com.inventory.Inventory.model.Materials;
 import com.inventory.Inventory.service.MaterialService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ public class MaterialController {
     private MaterialService materialService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Material material){
-        materialService.saveMaterial(material);
+    public String add(@RequestBody Materials materials){
+        materialService.saveMaterial(materials);
         return "New Material added";
     }
 
     @GetMapping("/getAll")
-    public List<Material> getAllMaterial(){
+    public List<Materials> getAllMaterial(){
         return materialService.getAllMaterial();
     }
 
     @GetMapping("/getmaterialsbyid/{id_material}")
-    public Material getMaterialById(@PathVariable Integer id_material){
+    public Materials getMaterialById(@PathVariable Integer id_material){
         return materialService.getMaterialById(id_material);
     }
 
     @PutMapping("/updatematerial/{id_material}")
-    public Material updateMaterial(@RequestBody Material newmaterial, @PathVariable Integer id_material){
+    public Materials updateMaterial(@RequestBody Materials newmaterial, @PathVariable Integer id_material){
         return materialService.updateMaterial(newmaterial, id_material);
     }
 

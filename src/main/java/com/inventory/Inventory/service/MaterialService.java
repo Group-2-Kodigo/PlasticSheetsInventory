@@ -1,18 +1,18 @@
 package com.inventory.Inventory.service;
 
-import com.inventory.Inventory.model.Material;
+import com.inventory.Inventory.model.Materials;
 
 import java.util.List;
 
 public interface MaterialService {
 
-    Material saveMaterial(Material material);
+    Materials saveMaterial(Materials materials);
 
-    public List<Material> getAllMaterial();
+    public List<Materials> getAllMaterial();
 
-    Material getMaterialById(Integer id_material);
+    Materials getMaterialById(Integer id_material);
 
-    Material updateMaterial(Material newMaterial, Integer id_material);
+    Materials updateMaterial(Materials newMaterials, Integer id_material);
 
     String deleteMaterial(Integer id_material);
 

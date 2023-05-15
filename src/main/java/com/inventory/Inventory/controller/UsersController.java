@@ -36,8 +36,6 @@ public class UsersController {
             return new ArrayList<>();
         }
 
-
-
         return usersService.getAllUsers();
     }
 

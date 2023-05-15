@@ -1,7 +1,7 @@
 package TestMockito;
 
 import com.inventory.Inventory.exception.MaterialNotFoundException;
-import com.inventory.Inventory.model.Material;
+import com.inventory.Inventory.model.Materials;
 import com.inventory.Inventory.repository.MaterialRepository;
 import com.inventory.Inventory.service.MaterialServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -29,19 +29,19 @@ public class MaterialServiceTest {
     @Test
     public void testGetAllMaterial() {
         // arrange
-        List<Material> materials = new ArrayList<>();
-        Material material1 = new Material();
-        material1.setId_material(1);
-        material1.setMaterials("Material 1");
-        Material material2 = new Material();
-        material2.setId_material(2);
-        material2.setMaterials("Material 2");
-        materials.add(material1);
-        materials.add(material2);
+        List<Materials> materials = new ArrayList<>();
+        Materials materials1 = new Materials();
+        materials1.setId_material(1);
+        materials1.setMaterials("Material 1");
+        Materials materials2 = new Materials();
+        materials2.setId_material(2);
+        materials2.setMaterials("Material 2");
+        materials.add(materials1);
+        materials.add(materials2);
         when(materialRepository.findAll()).thenReturn(materials);
 
         // act
-        List<Material> result = materialService.getAllMaterial();
+        List<Materials> result = materialService.getAllMaterial();
 
         // assert
         assertEquals(2, result.size());
@@ -52,13 +52,13 @@ public class MaterialServiceTest {
     @Test
     public void testGetMaterialById() {
         // arrange
-        Material material = new Material();
-        material.setId_material(1);
-        material.setMaterials("Material 1");
-        when(materialRepository.findById(1)).thenReturn(Optional.of(material));
+        Materials materials = new Materials();
+        materials.setId_material(1);
+        materials.setMaterials("Material 1");
+        when(materialRepository.findById(1)).thenReturn(Optional.of(materials));
 
         // act
-        Material result = materialService.getMaterialById(1);
+        Materials result = materialService.getMaterialById(1);
 
         // assert
         assertEquals("Material 1", result.getMaterials());
@@ -79,12 +79,12 @@ public class MaterialServiceTest {
     @Test
     public void testSaveMaterial() {
         // arrange
-        Material material = new Material();
-        material.setMaterials("Material 1");
-        when(materialRepository.save(material)).thenReturn(material);
+        Materials materials = new Materials();
+        materials.setMaterials("Material 1");
+        when(materialRepository.save(materials)).thenReturn(materials);
 
         // act
-        Material result = materialService.saveMaterial(material);
+        Materials result = materialService.saveMaterial(materials);
 
         // assert
         assertEquals("Material 1", result.getMaterials());
@@ -93,16 +93,16 @@ public class MaterialServiceTest {
     @Test
     public void testUpdateMaterial() {
         // arrange
-        Material oldMaterial = new Material();
-        oldMaterial.setId_material(1);
-        oldMaterial.setMaterials("Material 1");
-        Material newMaterial = new Material();
-        newMaterial.setId_material(1);
-        newMaterial.setMaterials("New Material 1");
-        when(materialRepository.findById(1)).thenReturn(Optional.of(oldMaterial));
-        when(materialRepository.save(oldMaterial)).thenReturn(newMaterial);
+        Materials oldMaterials = new Materials();
+        oldMaterials.setId_material(1);
+        oldMaterials.setMaterials("Material 1");
+        Materials newMaterials = new Materials();
+        newMaterials.setId_material(1);
+        newMaterials.setMaterials("New Material 1");
+        when(materialRepository.findById(1)).thenReturn(Optional.of(oldMaterials));
+        when(materialRepository.save(oldMaterials)).thenReturn(newMaterials);
                 // act
-                Material result = materialService.updateMaterial(newMaterial, 1);
+                Materials result = materialService.updateMaterial(newMaterials, 1);
 
         // assert
         assertEquals("New Material 1", result.getMaterials());
@@ -111,24 +111,24 @@ public class MaterialServiceTest {
     @Test
     public void testUpdateMaterialNotFound() {
         // arrange
-        Material newMaterial = new Material();
-        newMaterial.setId_material(1);
-        newMaterial.setMaterials("New Material 1");
+        Materials newMaterials = new Materials();
+        newMaterials.setId_material(1);
+        newMaterials.setMaterials("New Material 1");
         when(materialRepository.findById(1)).thenReturn(Optional.empty());
 
         // assert
         assertThrows(MaterialNotFoundException.class, () -> {
             // act
-            materialService.updateMaterial(newMaterial, 1);
+            materialService.updateMaterial(newMaterials, 1);
         });
     }
 
     @Test
     public void testDeleteMaterial() {
         // arrange
-        Material material = new Material();
-        material.setId_material(1);
-        material.setMaterials("Material 1");
+        Materials materials = new Materials();
+        materials.setId_material(1);
+        materials.setMaterials("Material 1");
         when(materialRepository.existsById(1)).thenReturn(true);
 
         // act

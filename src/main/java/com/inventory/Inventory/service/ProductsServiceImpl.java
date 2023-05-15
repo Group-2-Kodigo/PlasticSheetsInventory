@@ -36,7 +36,7 @@ public class ProductsServiceImpl implements ProductsService{
             products.setUnitPrice(newProducts.getUnitPrice());
             products.setSellingPrice(newProducts.getSellingPrice());
             products.setColor(newProducts.getColor());
-            products.setMaterial(newProducts.getMaterial());
+            products.setMaterials(newProducts.getMaterials());
             products.setSupplier(newProducts.getSupplier());
             products.setThickness(newProducts.getThickness());
             return productsRepository.save(products);

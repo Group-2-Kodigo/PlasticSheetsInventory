@@ -27,7 +27,7 @@ public class Products {
 
     @ManyToOne
     @JoinColumn(name = "id_material")
-    Material material;
+    Materials materials;
 
     @ManyToOne
     @JoinColumn(name = "id_size")

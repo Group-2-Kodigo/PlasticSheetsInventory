@@ -5,8 +5,8 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "material")
-public class Material {
+@Table(name = "materials")
+public class Materials {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
